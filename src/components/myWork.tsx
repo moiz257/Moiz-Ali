@@ -34,14 +34,14 @@ const projects = [
     link: "https://next-gen-ai-nine.vercel.app/", 
   },
   {
-    title: "Nexus AI",
+    title: "Portfolio",
     year: "2023",
     description: "FULLSTACK WEBSITE",
     imgSrc: "/capture5.png",
     link: "https://dynamic-resume-builder-three.vercel.app/", 
   },
   {
-    title: "Prime Plate",
+    title: "Resume Builder",
     year: "2022",
     description: "FRONT-END DEVELOPMENT",
     imgSrc: "/capture6.png",

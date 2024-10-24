@@ -7,7 +7,7 @@ const ContactForm: React.FC = () => {
         {/* Description Text */}
         <h2 className="text-left text-lg font-medium text-white/55">
           Whether you have a question, a suggestion, or just want to say hello, this is the place to do it. Please fill
-          out the form below with your details and message, and we'll get back to you as soon as possible.
+          out the form below with your details and message, and we&apos;ll get back to you as soon as possible.
         </h2>
 
         {/* Form */}

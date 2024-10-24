@@ -48,14 +48,6 @@ const projectVariants = {
   },
 };
 
-const hoverEffect = {
-  hover: {
-    scale: 1.05,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
 
 const Work: React.FC = () => {
   return (

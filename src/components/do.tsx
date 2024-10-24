@@ -38,7 +38,7 @@ const WhatIDoSection: React.FC = () => {
                 viewport={{ once: true }}
               >
                 <h3 className="text-xl font-bold">CUSTOM WEBSITE DESIGN</h3>
-                <p className="mt-2 text-md font-medium text-white/60">Tailored websites to match your brand's unique identity and goals.</p>
+                <p className="mt-2 text-md font-medium text-white/60">Tailored websites to match your brand&apos;s unique identity and goals.</p>
               </motion.div>
 
               <motion.div

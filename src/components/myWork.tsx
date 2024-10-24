@@ -65,15 +65,6 @@ const imageVariant = {
   },
 };
 
-const hoverEffect = {
-  hover: {
-    scale: 1.05,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-
 const MyWork = () => {
   return (
     <div className="w-full bg-black text-white py-10 px-6">

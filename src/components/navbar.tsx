@@ -29,14 +29,14 @@ const itemVariants = {
 const Navbar: React.FC<NavbarProps> = ({ name, size }) => {
   return (
     <motion.div
-      className="bg-black text-white w-full h-[40vh] mt-5 sm:mt-8 md:mt-12 "
+      className="bg-black text-white w-full h-[40vh] mt-3 sm:mt-6 md:mt-10 "
       initial="hidden"
       animate="visible"
       variants={containerVariants} 
     >
       {/* Logo Section */}
       <motion.div
-        className="h-[14vh] sm:h-[28vh] w-full flex justify-center items-center overflow-hidden "
+        className="h-[14vh] sm:h-[30vh] w-full flex justify-center items-center overflow-hidden "
         variants={itemVariants} 
       >
         <h1 className={`font-bold tracking-tighter text-center w-full ${size}`}>
@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ name, size }) => {
 
       {/* Navigation Links Section */}
       <motion.nav
-        className="grid grid-cols-3 gap-4 md:flex md:justify-start tracking-normal md:space-x-4 text-base font-[700] px-7 py-4 w-full"
+        className="grid grid-cols-3 gap-4 md:flex md:justify-start tracking-normal md:space-x-4 text-base font-[700]  px-7 py-4 w-full"
         variants={containerVariants}
       >
         {/* Links */}
@@ -61,7 +61,7 @@ const Navbar: React.FC<NavbarProps> = ({ name, size }) => {
         ].map((link, idx) => (
           <motion.div key={idx} className="relative group" variants={itemVariants}> 
             <Link href={link.href} className="tracking-tight relative z-10">
-              <span className="transition-opacity duration-300 ease-in-out group-hover:opacity-0">
+              <span className="transition-opacity duration-300 ease-in-out group-hover:opacity-0 sm:mt-6">
                 {link.label}
               </span>
               <span className="absolute left-0 transition-transform duration-300 ease-in-out transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100">

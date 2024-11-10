@@ -12,7 +12,7 @@ const SkillBar = ({ skill, percentage }: { skill: string; percentage: number }) 
   };
 
   return (
-    <div className="w-full mb-4 mt-4 sm:mt-6 ">
+    <div className="w-full mb-4  ">
       <div className="flex justify-between">
         <span>{skill}</span>
         <span>{percentage}%</span>

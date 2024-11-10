@@ -73,7 +73,7 @@ const SkillsSection: React.FC = () => {
           MY SKILLS
         </motion.h2>
 
-        <div className="grid grid-cols-2 gap-8 justify-items-center md:hidden mt-8">
+        <div className="grid grid-cols-2 gap-8 justify-items-center md:hidden mt-4 sm:mt-10 md:mt-14">
           {skills.map((skill, index) => (
             <motion.div
               key={skill.label}

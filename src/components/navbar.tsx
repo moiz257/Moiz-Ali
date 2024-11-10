@@ -29,7 +29,7 @@ const itemVariants = {
 const Navbar: React.FC<NavbarProps> = ({ name, size }) => {
   return (
     <motion.div
-      className="bg-black text-white w-full h-[40vh] mt-3 sm:mt-6 md:mt-10 "
+      className="bg-black text-white w-full h-[40vh]"
       initial="hidden"
       animate="visible"
       variants={containerVariants} 

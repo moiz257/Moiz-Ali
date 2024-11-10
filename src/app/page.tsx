@@ -1,4 +1,4 @@
-"use client"
+
 import About from "@/components/about";
 import Cards from "@/components/card";
 import WhatIDoSection from "@/components/do";

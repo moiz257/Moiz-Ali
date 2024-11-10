@@ -36,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ name, size }) => {
     >
       {/* Logo Section */}
       <motion.div
-        className="h-[14vh] sm:h-[30vh] w-full flex justify-center items-center overflow-hidden "
+        className="h-[16vh] sm:h-[36vh] w-full flex justify-center items-center overflow-hidden "
         variants={itemVariants} 
       >
         <h1 className={`font-bold tracking-tighter text-center w-full ${size}`}>

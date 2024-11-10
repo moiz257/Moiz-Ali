@@ -61,7 +61,7 @@ const Navbar: React.FC<NavbarProps> = ({ name, size }) => {
         ].map((link, idx) => (
           <motion.div key={idx} className="relative group" variants={itemVariants}> 
             <Link href={link.href} className="tracking-tight relative z-10">
-              <span className="transition-opacity duration-300 ease-in-out group-hover:opacity-0 sm:mt-6">
+              <span className="transition-opacity duration-300 ease-in-out group-hover:opacity-0 ">
                 {link.label}
               </span>
               <span className="absolute left-0 transition-transform duration-300 ease-in-out transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100">

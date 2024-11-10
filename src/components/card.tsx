@@ -11,7 +11,7 @@ const Cards: React.FC = () => {
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-8 py-8 mt-4 sm:mt-10 md:mt-18 sm:mb-8">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-8 py-8 mt-4 sm:mt-18 sm:mb-18">
       {cards.map((card, index) => (
         <div key={index} className="text-white p-6 rounded-lg flex flex-col items-center">
           {/* Animated Number */}

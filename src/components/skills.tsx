@@ -29,7 +29,7 @@ const SkillsSection: React.FC = () => {
   ];
 
   return (
-    <section className="w-full h-auto bg-black text-white py-10 px-10 mt-6 sm:mt-18 md:mt-20 sm:mb-10 ">
+    <section className="w-full h-auto bg-black text-white py-10 px-10 mt-6 sm:mt-28 sm:mb-12">
       <div className="container mx-auto">
 
         <div className="hidden md:flex items-center justify-between w-full">

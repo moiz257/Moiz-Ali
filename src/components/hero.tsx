@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
         </motion.p>
         <motion.div variants={itemVariants}>
           <Link
-            href="/"
+            href="/about"
             className="inline-block text-sm font-bold mt-6 border border-white rounded-full px-8 md:px-10 py-3 transition-colors duration-300 hover:text-white/60"
           >
             About Me

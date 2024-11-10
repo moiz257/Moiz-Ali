@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const AboutSection: React.FC = () => {
   return (
-    <section className="flex flex-col gap-x-20 bg-black text-white tracking-normal p-6 md:p-12 md:h-[50vh] md:flex-row md:justify-between">
+    <section className="flex flex-col gap-x-20 bg-black text-white tracking-normal p-6 md:p-12 md:h-[50vh] md:flex-row md:justify-between sm:mb-12 sm:mt-16">
       {/* Left Side - Small Heading */}
       <div className='flex flex-col mb-5 font-bold text-medium sm:w-[9vw] text-white/90 md:w-1/7'>
         <h2 className="text-md md:text-md">About Me</h2>

@@ -5,7 +5,7 @@ import React from 'react'
 const page = () => {
   return (
       <main>
-        <Navbar name='MY WORKS' size='text-[18.5vw]'/>
+        <Navbar name='MY WORKS' size='text-[17.5vw]'/>
         <MyWork/>
       </main>
   )

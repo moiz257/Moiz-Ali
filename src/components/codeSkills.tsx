@@ -12,7 +12,7 @@ const SkillBar = ({ skill, percentage }: { skill: string; percentage: number }) 
   };
 
   return (
-    <div className="w-full mb-4">
+    <div className="w-full mb-4 mt-4 sm:mt-6 ">
       <div className="flex justify-between">
         <span>{skill}</span>
         <span>{percentage}%</span>
@@ -38,7 +38,7 @@ const CodingSkills: React.FC = () => {
   };
 
   return (
-    <section className="w-full h-auto bg-black text-white py-10 px-10 mt-16">
+    <section className="w-full h-auto bg-black text-white py-10 px-10 mt-4 sm:mt-12 md:mt-18">
       <div className="container mx-auto">
         {/* Flex container for heading and skills */}
         <div className="flex flex-col md:flex-row items-start md:items-center">

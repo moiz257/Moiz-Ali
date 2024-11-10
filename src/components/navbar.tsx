@@ -29,7 +29,7 @@ const itemVariants = {
 const Navbar: React.FC<NavbarProps> = ({ name, size }) => {
   return (
     <motion.div
-      className="bg-black text-white w-full h-[40vh]"
+      className="bg-black text-white w-full h-[40vh] mt-5 sm:mt-8 md:mt-12 "
       initial="hidden"
       animate="visible"
       variants={containerVariants} 
@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ name, size }) => {
 
       {/* Navigation Links Section */}
       <motion.nav
-        className="grid grid-cols-3 gap-4 md:flex md:justify-start tracking-normal md:space-x-4 text-base font-[700] mt-4 px-7 py-4 w-full"
+        className="grid grid-cols-3 gap-4 md:flex md:justify-start tracking-normal md:space-x-4 text-base font-[700] px-7 py-4 w-full"
         variants={containerVariants}
       >
         {/* Links */}

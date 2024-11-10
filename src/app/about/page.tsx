@@ -8,7 +8,7 @@ import React from 'react'
 const page = () => {
   return (
     <main>
-        <Navbar name='ABOUT ME' size="text-[19.5vw]"/>
+        <Navbar name='ABOUT ME' size="text-[19vw]"/>
         <AboutSection/>
         <SkillsSection/>
         <CodingSkills/>

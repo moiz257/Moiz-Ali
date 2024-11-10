@@ -11,7 +11,7 @@ import Work from "@/components/work";
 export default function Home() {
   return (
     <main>
-      <Navbar name={"MOIZ ALI"} size="text-[24.2vw]"/>
+      <Navbar name={"MOIZ ALI"} size="text-[24vw]"/>
       <Hero/>
       <Cards/>
       <About/>

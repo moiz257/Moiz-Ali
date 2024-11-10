@@ -5,7 +5,7 @@ import React from 'react'
 const page = () => {
     return (
         <main>
-            <Navbar name='WHAT I DO' size='text-[20vw]'/>
+            <Navbar name='WHAT I DO' size='text-[19vw]'/>
             <ServicesPage/>
         </main>
     )

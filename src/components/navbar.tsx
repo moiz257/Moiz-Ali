@@ -75,9 +75,9 @@ const Navbar: React.FC<NavbarProps> = ({ name, size }) => {
           className="flex flex-col items-center gap-4 md:flex-row md:flex-wrap md:justify-center"
           variants={containerVariants}
         >
-          {links.map((link, idx) => (
+        {links.map((link) => (
             <motion.div
-              key={link.label}
+            key={link.label}
               variants={itemVariants}
               whileHover={{ y: -3 }}
               className="group"

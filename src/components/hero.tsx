@@ -1,19 +1,18 @@
 "use client";
-import Image from 'next/image';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import Moiz from "../../public/IMG_4043.png";
-import React from 'react';
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import Moiz from "../../public/moiz1.jpg";
+import React from "react";
 
-// Define animation variants
 const containerVariants = {
-  hidden: { opacity: 0, y: 50 }, 
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8, 
-      staggerChildren: 0.2, 
+      duration: 0.8,
+      staggerChildren: 0.2,
     },
   },
 };
@@ -24,55 +23,104 @@ const itemVariants = {
 };
 
 const Hero: React.FC = () => {
-  return (
-    <motion.div
-      className="flex flex-col md:flex-row justify-between items-center gap-7 p-6 md:p-14"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
-      {/* Left Content */}
-      <motion.div className="md:w-1/2 mb-8 md:mb-0 text-left p-3" variants={itemVariants}>
-        <motion.h2 className="text-sm font-[700] text-white/90" variants={itemVariants}>
-          AVAILABLE FOR WORK
-        </motion.h2>
-        <motion.h1 className="text-5xl w-full md:text-7xl font-[500]  mt-5 tracking-tighter " variants={itemVariants}>
-          A WEBSITE DESIGNER FROM PAKISTAN
-        </motion.h1>
-        <motion.p className="mt-3 text-base md:text-lg font-semibold text-white/60 w-full md:w-[550px]" variants={itemVariants}>
-          My journey into web design started with a love for both art and technology, which led me to pursue a career where I could blend these interests seamlessly.
-        </motion.p>
-        <motion.div variants={itemVariants}>
-          <Link
-            href="/about"
-            className="inline-block text-sm font-bold mt-6 border border-white rounded-full px-8 md:px-10 py-3 transition-colors duration-300 hover:text-white/60"
-          >
-            About Me
-          </Link>
-        </motion.div>
-      </motion.div>
+  const metrics = [
+    { label: "Years Building", value: "08+" },
+    { label: "Products Launched", value: "40+" },
+    { label: "Automation Hours Saved", value: "3K+" },
+  ];
 
-      {/* Right Content */}
+  return (
+    <section className="relative overflow-hidden px-4 py-12 sm:px-8 lg:px-16">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent_55%)]" />
       <motion.div
-        className="w-full flex justify-center items-center" 
-        variants={itemVariants}
+        className="relative z-10 flex flex-col gap-12 rounded-[40px] border border-white/10 bg-black/70 p-8 backdrop-blur-xl md:flex-row md:items-center md:gap-10"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
       >
+        <motion.div className="flex-1 space-y-6" variants={itemVariants}>
+          <motion.div
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs tracking-[0.4em] uppercase text-white/70"
+            variants={itemVariants}
+          >
+            Available for Work
+            <span className="h-[1px] w-8 bg-gradient-to-r from-white/50 to-transparent" />
+          </motion.div>
+
+          <motion.h1
+            className="text-4xl font-semibold leading-tight text-white md:text-6xl lg:text-7xl"
+            variants={itemVariants}
+          >
+            Crafting bold digital experiences across web, mobile, and automation.
+          </motion.h1>
+          <motion.p
+            className="text-base text-white/70 md:text-lg"
+            variants={itemVariants}
+          >
+            I design and engineer product-grade interfaces, automation systems, and
+            AI-driven touchpoints that move businesses forward with speed and
+            precision.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col gap-4 pt-4 sm:flex-row"
+            variants={itemVariants}
+          >
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-black transition-all duration-300 hover:shadow-[0_10px_40px_rgba(255,255,255,0.3)]"
+            >
+              Start a Project
+            </Link>
+            <Link
+              href="/about"
+              className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition-all duration-300 hover:border-white"
+            >
+              About Me
+            </Link>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-2 gap-4 pt-4 sm:grid-cols-3"
+            variants={itemVariants}
+          >
+            {metrics.map((metric) => (
+              <div
+                key={metric.label}
+                className="rounded-3xl border border-white/10 bg-white/5 px-4 py-3 text-white shadow-lg shadow-black/40"
+              >
+                <div className="text-2xl font-semibold">{metric.value}</div>
+                <p className="text-[10px] sm:text-xs tracking-[0.3em] text-white/60 uppercase">
+                  {metric.label}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+
         <motion.div
-          initial={{ opacity: 0, y: 100 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 1.2, delay: 0.5 }}
+          className="flex-1"
+          variants={itemVariants}
+          whileHover={{ scale: 1.02 }}
         >
-          <Image
-            src={Moiz}
-            alt="Image"
-            className="w-[100%] md:w-[80%] lg:w-[600px] h-auto mx-auto"
-            width={900}
-            height={900}
-            priority 
-          />
+          <div className="relative mx-auto max-w-md">
+            <div className="absolute -left-6 top-6 h-24 w-24 rounded-full border border-white/20" />
+            <div className="absolute -right-6 bottom-6 h-32 w-32 rounded-full border border-white/10" />
+            <div className="relative overflow-hidden rounded-[40px] border border-white/15 bg-white/5 p-4 shadow-2xl shadow-black/50">
+              <Image
+                src={Moiz}
+                alt="Moiz Ali"
+                className="rounded-[30px]"
+                width={700}
+                height={800}
+                priority
+              />
+              <div className="absolute inset-0 rounded-[40px] border border-white/10" />
+            </div>
+          </div>
         </motion.div>
       </motion.div>
-    </motion.div>
+    </section>
   );
 };
 

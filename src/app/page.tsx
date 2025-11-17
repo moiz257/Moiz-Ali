@@ -10,14 +10,17 @@ import Work from "@/components/work";
 
 export default function Home() {
   return (
-    <main>
-      <Navbar name={"MOIZ ALI"} size="text-[24vw]"/>
-      <Hero/>
-      <Cards/>
-      <About/>
-      <WhatIDoSection/>
-      <TextSlider/>
-      <Work/>
+    <main className="bg-black text-white overflow-x-hidden min-w-0">
+      <Navbar
+        name={"MOIZ ALI"}
+        size="text-[18vw] sm:text-[12vw] md:text-[10vw] lg:text-[8vw] xl:text-[7vw]"
+      />
+      <Hero />
+      <Cards />
+      <About />
+      <WhatIDoSection />
+      <TextSlider />
+      <Work />
     </main>
   );
 }

@@ -27,53 +27,73 @@ const itemVariants = {
 };
 
 const Navbar: React.FC<NavbarProps> = ({ name, size }) => {
+  const links = [
+    { label: "HOME", href: "/" },
+    { label: "ABOUT ME", href: "/about" },
+    { label: "WHAT I DO", href: "/what-i-do" },
+    { label: "WORKS", href: "/works" },
+    { label: "HIRE ME", href: "/contact" },
+  ];
+
   return (
-    <motion.div
-      className="bg-black text-white w-full h-[40vh]"
+    <motion.header
+      className="relative overflow-hidden bg-black text-white px-4 sm:px-8 lg:px-16 py-12"
       initial="hidden"
       animate="visible"
-      variants={containerVariants} 
+      variants={containerVariants}
     >
-      {/* Logo Section */}
-      <motion.div
-        className="h-[20vh] sm:h-[40vh] w-full flex justify-center items-center overflow-hidden "
-        variants={itemVariants} 
-      >
-        <h1 className={`font-bold tracking-tighter text-center w-full ${size}`}>
-          <span className="block w-full whitespace-nowrap">
-            {name} {/* Dynamic Name */}
-          </span>
-        </h1>
-      </motion.div>
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/10 opacity-60" />
+      <div className="pointer-events-none absolute -right-10 top-0 h-64 w-64 rounded-full bg-white/10 blur-[120px]" />
+      <div className="pointer-events-none absolute -left-20 bottom-0 h-96 w-96 rounded-full bg-white/5 blur-[160px]" />
 
-      {/* Navigation Links Section */}
-      <motion.nav
-        className="grid grid-cols-3 gap-4 md:flex md:justify-start tracking-normal md:space-x-4 text-base font-[700]  px-7 py-4 w-full"
-        variants={containerVariants}
-      >
-        {/* Links */}
-        {[
-          { label: 'HOME', href: '/' },
-          { label: 'ABOUT ME', href: '/about' },
-          { label: 'WHAT I DO', href: '/what-i-do' },
-          { label: 'WORKS', href: '/works' },
-          { label: 'HIRE ME', href: '/contact' },
-        ].map((link, idx) => (
-          <motion.div key={idx} className="relative group" variants={itemVariants}> 
-            <Link href={link.href} className="tracking-tight relative z-10">
-              <span className="transition-opacity duration-300 ease-in-out group-hover:opacity-0 ">
+      <div className="relative z-10 mx-auto flex items-center justify-center max-w-6xl flex-col gap-8">
+        <motion.div
+          className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-5 py-2 text-xs tracking-[0.4em] uppercase text-white/70"
+          variants={itemVariants}
+        >
+          Your
+          <span className="h-[1px] w-10 bg-gradient-to-r from-white/60 to-transparent" />
+          Next Level Digital Solutions
+        </motion.div>
+
+        <motion.h1
+          className={`text-center font-semibold leading-tight tracking-tighter text-white ${size} md:text-[9vw]`}
+          variants={itemVariants}
+        >
+          {name}
+        </motion.h1>
+
+        <motion.p
+          className="mx-auto max-w-3xl text-center text-sm sm:text-base text-white/65"
+          variants={itemVariants}
+        >
+          Designing immersive, performance-driven digital products for ambitious
+          founders and teams.
+        </motion.p>
+
+        <motion.nav
+          className="flex flex-col items-center gap-4 md:flex-row md:flex-wrap md:justify-center"
+          variants={containerVariants}
+        >
+          {links.map((link, idx) => (
+            <motion.div
+              key={link.label}
+              variants={itemVariants}
+              whileHover={{ y: -3 }}
+              className="group"
+            >
+              <Link
+                href={link.href}
+                className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white/70 transition-all duration-300 group-hover:border-white/60 group-hover:text-white"
+              >
                 {link.label}
-              </span>
-              <span className="absolute left-0 transition-transform duration-300 ease-in-out transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-                {link.label}
-              </span>
-            </Link>
-            {/* Underline effect */}
-            <span className="absolute left-0 bottom-0 w-full h-[2px] bg-white transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-in-out" />
-          </motion.div>
-        ))}
-      </motion.nav>
-    </motion.div>
+                <span className="h-[1px] w-4 bg-gradient-to-r from-white/40 to-transparent" />
+              </Link>
+            </motion.div>
+          ))}
+        </motion.nav>
+      </div>
+    </motion.header>
   );
 };
 

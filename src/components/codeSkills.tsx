@@ -1,66 +1,73 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion'; 
-const SkillBar = ({ skill, percentage }: { skill: string; percentage: number }) => {
-  const barVariant = {
-    hidden: { width: '0%' }, 
-    visible: {
-      width: `${percentage}%`,
-      transition: { duration: 1, ease: 'easeOut' }, 
-    },
-  };
+import React from "react";
+import { motion } from "framer-motion";
 
-  return (
-    <div className="w-full mb-4  ">
-      <div className="flex justify-between">
-        <span>{skill}</span>
-        <span>{percentage}%</span>
-      </div>
-      {/* Motion div for the skill bar with right-side animation */}
-      <div className="w-[32vw] bg-white/20 rounded-full h-2">
-        <motion.div
-          className="bg-white h-2 rounded-full"
-          variants={barVariant} 
-          initial="hidden"
-          animate="visible"
-        ></motion.div>
-      </div>
-    </div>
-  );
-};
+const codeSkills = [
+  { label: "React / Next.js", value: 92 },
+  { label: "TypeScript", value: 88 },
+  { label: "Node.js & APIs", value: 85 },
+  { label: "Python Automation", value: 80 },
+  { label: "DevOps & Infra", value: 74 },
+  { label: "Design Systems", value: 90 },
+];
 
 const CodingSkills: React.FC = () => {
-  // Variants for heading (bottom to top)
-  const headingVariant = {
-    hidden: { opacity: 0, y: 50 }, 
-    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: 'easeInOut' } }, 
-  };
-
   return (
-    <section className="w-full h-auto bg-black text-white py-10 px-10 mt-3 sm:mt-6 md:mt-12">
-      <div className="container mx-auto">
-        {/* Flex container for heading and skills */}
-        <div className="flex flex-col md:flex-row items-start md:items-center">
-          {/* Heading with Framer Motion */}
-          <motion.h2
-            className="text-md text-white/90 font-semibold mb-6 md:mb-20 md:w-1/4"
-            variants={headingVariant} 
-            initial="hidden"
-            animate="visible"
+    <section className="relative bg-black px-4 py-16 text-white sm:px-8 lg:px-16">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.06),_transparent_70%)]" />
+      <div className="relative mx-auto flex max-w-6xl flex-col gap-10">
+        <div className="flex flex-col items-center text-center">
+          <motion.div
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.4em] text-white/70"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            CODING SKILLS
+            Coding Craft
+            <span className="h-[1px] w-8 bg-gradient-to-r from-white/50 to-transparent" />
+          </motion.div>
+          <motion.h2
+            className="mt-4 max-w-3xl text-3xl font-semibold leading-tight md:text-5xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Precision engineering across front-end, back-end, and automation.
           </motion.h2>
+        </div>
 
-          {/* Skills bars next to the heading */}
-          <div className="w-full md:w-3/4 grid grid-cols-1 md:grid-cols-2 gap-x-20 md:mr-16 p-6">
-            <SkillBar skill="HTML" percentage={80} />
-            <SkillBar skill="CSS" percentage={70} />
-            <SkillBar skill="Bootstrap" percentage={82} />
-            <SkillBar skill="JavaScript" percentage={62} />
-            <SkillBar skill="PHP" percentage={90} />
-            <SkillBar skill="React" percentage={85} />
-          </div>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {codeSkills.map((skill, index) => (
+            <motion.div
+              key={skill.label}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              viewport={{ once: true }}
+              className="rounded-3xl border border-white/15 bg-white/5 p-6 shadow-xl shadow-black/40"
+            >
+              <div className="flex items-center justify-between text-sm uppercase tracking-[0.3em] text-white/70">
+                <span>{skill.label}</span>
+                <span>{skill.value}%</span>
+              </div>
+              <div className="mt-4 h-2 rounded-full bg-white/10">
+                <motion.div
+                  className="h-full rounded-full bg-gradient-to-r from-white to-white/60"
+                  initial={{ width: "0%" }}
+                  whileInView={{ width: `${skill.value}%` }}
+                  transition={{ duration: 0.9, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                />
+              </div>
+              <div className="mt-3 text-xs text-white/60">
+                Confidence score built from delivered products, audits, and ops
+                automations.
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,161 +1,138 @@
 "use client";
+
 import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image"; 
-import Link from "next/link"; 
+import Image from "next/image";
+import Link from "next/link";
 
 const projects = [
   {
-    title: "PrimeVault",
-    year: "2024",
-    description: "E-COMMERCE WEBSITE",
-    imgSrc: "/capture1.png",
-    link: "https://ecom-prime.vercel.app/", 
+    title: "Dimer Health Services",
+    year: "2025",
+    description: "Custom Web Application",
+    stack: ["Next.js", "Tailwind", "Node.js", "Postgres"],
+    imgSrc: "/dimer.png",
+    link: "https://dimer-frontend-b9a36b8e3ad4.herokuapp.com/login",
   },
   {
-    title: "Nexus AI",
-    year: "2023",
-    description: "LANDING PAGE DESIGN",
-    imgSrc: "/capture2.png",
-    link: "https://ai-nexus-moizali.vercel.app/", 
+    title: "Sourcely AI",
+    year: "2025",
+    description: "AI Powered Web Application",
+    stack: ["Next.js", "Python", "AI", "Tailwind", "Postgres"],
+    imgSrc: "/sourcely.png",
+    link: "https://sourcely.islpulse.com/login",
   },
   {
-    title: "Prime Plate",
-    year: "2022",
-    description: "FRONT-END DEVELOPMENT",
-    imgSrc: "/capture3.png",
-    link: "https://prime-plate.vercel.app/", 
+    title: "LMS Application",
+    year: "2025",
+    description: "Learning Experience Platform",
+    stack: ["React + Astro", "Python", "Zustand", "Tailwind"],
+    imgSrc: "/lms.png",
+    link: "https://lmsapp.islpulse.com/",
   },
   {
-    title: "Next Gen AI",
-    year: "2024",
-    description: "LANDING PAGE DESIGN",
-    imgSrc: "/capture4.png",
-    link: "https://next-gen-ai-nine.vercel.app/", 
+    title: "Kajabi Custom Widget",
+    year: "2025",
+    description: "No-Code Extension",
+    stack: ["React", "JavaScript", "Tailwind", "Firebase"],
+    imgSrc: "/kajabi.png",
+    link: "https://temp.islpulse.com/",
   },
   {
-    title: "Portfolio",
-    year: "2023",
-    description: "FULLSTACK WEBSITE",
-    imgSrc: "/capture5.png",
-    link: "https://dynamic-resume-builder-three.vercel.app/", 
+    title: "InflamaScan AI",
+    year: "2025",
+    description: "Full-Stack Development",
+    stack: ["React", "Node.js", "MongoDB", "Tailwind"],
+    imgSrc: "/inflama.png",
+    link: "#",
   },
   {
-    title: "Resume Builder",
-    year: "2022",
-    description: "FRONT-END DEVELOPMENT",
-    imgSrc: "/capture6.png",
-    link: "https://protfolio-moiz.vercel.app/", 
+    title: "Speak Your Menu",
+    year: "2025",
+    description: "Full-Stack Development",
+    stack: ["React", "Node.js", "MongoDB", "Tailwind"],
+    imgSrc: "/speak.png",
+    link: "https://app.speakyourmenu.com/",
   },
 ];
 
-// Animation variants for heading, paragraph, and images
-const headingVariant = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeInOut" } },
-};
-
-// Image variant with fast and right-to-left motion
-const imageVariant = {
-  hidden: { opacity: 0, x: 150 }, 
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    transition: { duration: 0.6, ease: "easeOut", delay: 0.2 } 
-  },
-};
-
 const MyWork = () => {
   return (
-    <div className="w-full bg-black text-white py-10 px-6">
-      {/* Top Section */}
-      <motion.div
-        className="flex flex-col items-center mb-10"
-        initial="hidden"
-        animate="visible"
-        variants={headingVariant}
-      >
-        <motion.h2 className="text-sm tracking-widest">WORKS</motion.h2>
-        <motion.h1
-          className="text-5xl font-bold text-start w-[88vw] mt-4"
-          variants={headingVariant}
+    <section className="relative bg-black py-16 text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08),_transparent_65%)]" />
+      <div className="relative z-10 mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-8">
+        <motion.div
+          className="flex flex-col items-center text-center"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
-          EXPLORE THE PROJECTS BELOW TO SEE HOW I BRING IDEAS TO LIFE THROUGH
-          THOUGHTFUL DESIGN AND METICULOUS EXECUTION.
-        </motion.h1>
-      </motion.div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.4em] text-white/70">
+            Selected Work
+            <span className="h-[1px] w-8 bg-gradient-to-r from-white/60 to-transparent" />
+          </div>
+          <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight md:text-5xl">
+            Product design and engineering across health, AI, and automation.
+          </h2>
+        </motion.div>
 
-      {/* Desktop View */}
-      <div className="hidden md:grid md:grid-cols-3 gap-10">
-        {projects.map((project, index) => (
-          <Link href={project.link} key={index} passHref>
-            <motion.div
-              className="relative group overflow-hidden"
-              variants={imageVariant} 
-              initial="hidden"
-              animate="visible"
-              whileHover="hover"
-            >
-              <motion.div className="w-full h-96 relative">
-                <Image
-                  src={project.imgSrc}
-                  alt={project.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="group-hover:scale-110 transition-transform duration-500"
-                />
-              </motion.div>
-              <motion.div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <h2 className="text-4xl font-bold">{project.title}</h2>
-              </motion.div>
-              <div className="absolute bottom-5 left-5">
-                <span className="text-white border border-white/40 px-3 py-1 rounded-full text-sm">
-                  {project.description}
-                </span>
-              </div>
-              <div className="absolute bottom-5 right-5 text-lg font-semibold">
-                {project.year}
-              </div>
-            </motion.div>
-          </Link>
-        ))}
-      </div>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          {projects.map((project, index) => (
+            <Link key={project.title} href={project.link} target="_blank">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                className="group relative overflow-hidden rounded-[32px] border border-white/15 bg-white/5 shadow-2xl shadow-black/40 transition-all duration-300 hover:border-white/40"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={project.imgSrc}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                  <div className="absolute top-4 left-4 rounded-full border border-white/20 px-4 py-1 text-xs uppercase tracking-[0.3em] text-white/70">
+                    {project.year}
+                  </div>
+                </div>
 
-      {/* Mobile View */}
-      <div className="md:hidden flex flex-col gap-6">
-        {projects.map((project, index) => (
-          <Link href={project.link} key={index} passHref>
-            <motion.div
-              className="w-full relative group overflow-hidden"
-              variants={imageVariant}
-              initial="hidden"
-              animate="visible"
-              whileHover="hover"
-            >
-              <motion.div className="w-full h-96 relative">
-                <Image
-                  src={project.imgSrc}
-                  alt={project.title}
-                  objectFit="cover"
-                  className="transition-transform duration-500"
-                  width={700}
-                  height={700}
-                />
+                <div className="flex flex-col gap-4 p-6">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-2xl font-semibold">{project.title}</h3>
+                    <span className="text-sm uppercase tracking-[0.3em] text-white/60">
+                      Case Study
+                    </span>
+                  </div>
+                  <p className="text-sm text-white/70">{project.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs text-white/70"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-2 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.3em] text-white/70">
+                    View Project
+                    <span className="h-[1px] flex-1 bg-gradient-to-r from-white/40 to-transparent" />
+                    <span className="rotate-[-45deg] transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-1">
+                      ↗
+                    </span>
+                  </div>
+                </div>
               </motion.div>
-              <motion.div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <h2 className="text-3xl font-bold">{project.title}</h2>
-              </motion.div>
-              <div className="mt-4 flex justify-between items-center">
-                <span className="text-white border border-white px-3 py-1 rounded-full text-sm">
-                  {project.description}
-                </span>
-                <span className="text-lg font-semibold">{project.year}</span>
-              </div>
-            </motion.div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Command } from "cmdk";
 import { useRouter } from "next/navigation";
-import { Search, User, Briefcase, Mail, Phone, Layout, Code2 } from "lucide-react";
+import { Search, User, Briefcase, Mail, Phone, Layout } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
 

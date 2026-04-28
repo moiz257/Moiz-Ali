@@ -10,7 +10,6 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ name, size }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const containerRef = useRef<HTMLDivElement>(null);
   const opacity = useTransform(scrollY, [0, 80], [1, 0]);

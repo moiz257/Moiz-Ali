@@ -4,6 +4,7 @@ import Cards from "@/components/card";
 import WhatIDoSection from "@/components/do";
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
+import ExperienceSection from "@/components/experience";
 import TextSlider from "@/components/slider";
 import Work from "@/components/work";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero />
       <Cards />
       <About />
+      <ExperienceSection />
       <WhatIDoSection />
       <TextSlider />
       <Work />

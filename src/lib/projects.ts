@@ -8,6 +8,7 @@ export type Project = {
   technologies: string[];
   image: string;
   href?: string;
+  caseStudy?: boolean;
 };
 
 export const projects: Project[] = [
@@ -21,6 +22,7 @@ export const projects: Project[] = [
     technologies: ["Next.js", "Python", "AI", "Tailwind", "Postgres"],
     image: "/sourcely.png",
     href: "https://sourcely.islpulse.com/login",
+    caseStudy: true,
   },
   {
     title: "Dimer Health Services",
@@ -32,6 +34,7 @@ export const projects: Project[] = [
     technologies: ["Next.js", "Tailwind", "Node.js", "Postgres"],
     image: "/dimer.png",
     href: "https://dimer-frontend-b9a36b8e3ad4.herokuapp.com/login",
+    caseStudy: true,
   },
   {
     title: "LMS Application",
@@ -43,6 +46,7 @@ export const projects: Project[] = [
     technologies: ["React + Astro", "Python", "Zustand", "Tailwind"],
     image: "/lms.png",
     href: "https://lmsapp.islpulse.com/",
+    caseStudy: true,
   },
   {
     title: "Kajabi Custom Widget",

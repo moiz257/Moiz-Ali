@@ -19,12 +19,12 @@ export default function Home() {
       />
       <Hero />
       <ScrollStory />
-      <About />
-      <ExperienceSection />
+      <Work />
       <WhatIDoSection />
       <AIWorkflow />
+      <About />
+      <ExperienceSection />
       <HowWeWork />
-      <Work />
     </main>
   );
 }

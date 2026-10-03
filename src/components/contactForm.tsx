@@ -20,6 +20,7 @@ export default function ContactForm() {
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 28, mass: 0.2 });
   const infoY = useTransform(progress, [0, 0.5, 1], [35, 0, -25]);
   const formY = useTransform(progress, [0, 0.5, 1], [65, 0, -35]);
+  const channelRotate = useTransform(progress, [0, 1], [-8, 8]);
   const [formData, setFormData] = useState<FormData>(initialForm);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [feedback, setFeedback] = useState("");
@@ -46,6 +47,7 @@ export default function ContactForm() {
   return (
     <section ref={sectionRef} className="section-shell contact-section pt-12">
       <div className="section-container grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+        <motion.div className="contact-channel" style={{ rotate: channelRotate }} aria-hidden="true"><span>OPEN CHANNEL</span><strong>01</strong><i /></motion.div>
         <motion.div style={{ y: infoY }}>
           <p className="section-copy max-w-md text-xl">Have a product, workflow, or problem worth building around? Send the brief and I&apos;ll help turn it into a clear next step.</p>
           <div className="mt-10 border-t border-white/10 pt-5">

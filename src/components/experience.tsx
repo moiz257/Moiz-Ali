@@ -24,11 +24,16 @@ export default function ExperienceSection() {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 28, mass: 0.2 });
   const beamScale = useTransform(progress, [0.08, 0.78], [0, 1]);
+  const signalRotate = useTransform(progress, [0, 1], [-4, 4]);
+  const signalX = useTransform(progress, [0, 1], [-20, 20]);
 
   return (
     <section ref={sectionRef} className="section-shell experience-section border-t border-white/10">
       <div className="section-container">
         <SectionHeading eyebrow="Experience" title={<>Building alongside <span className="text-muted">ambitious teams.</span></>} />
+        <motion.div className="experience-signal" style={{ rotate: signalRotate, x: signalX }} aria-hidden="true">
+          <span>PRODUCT</span><i /><span>SYSTEMS</span><i /><span>AUTOMATION</span>
+        </motion.div>
         <div className="experience-timeline mt-12">
           <motion.div className="experience-beam" style={{ scaleY: beamScale }} aria-hidden="true" />
           {experiences.map((experience, index) => (

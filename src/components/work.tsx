@@ -6,8 +6,9 @@ import { projects } from "@/lib/projects";
 
 export default function Work() {
   return (
-    <section className="section-shell border-t border-white/10">
+    <section className="section-shell work-section border-t border-white/10">
       <div className="section-container">
+        <div className="work-topline"><span>03 / SELECTED SYSTEMS</span><span>Scroll to inspect <ArrowUpRight size={13} /></span></div>
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <SectionHeading
             eyebrow="Selected work"

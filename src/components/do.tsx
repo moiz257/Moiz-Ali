@@ -39,10 +39,17 @@ function ServiceCard({ service, index }: { service: (typeof services)[number]; i
 }
 
 export default function WhatIDoSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const progress = useSpring(scrollYProgress, { stiffness: 80, damping: 28, mass: 0.2 });
+  const constellationRotate = useTransform(progress, [0, 1], [-12, 18]);
+  const constellationScale = useTransform(progress, [0, 0.5, 1], [0.8, 1, 0.9]);
+
   return (
     <>
-      <section className="section-shell border-t border-white/10">
+      <section ref={sectionRef} className="section-shell services-section border-t border-white/10">
         <div className="section-container">
+          <motion.div className="service-constellation" style={{ rotate: constellationRotate, scale: constellationScale }} aria-hidden="true"><span>WEB</span><span>AI</span><span>AUTOMATE</span><i /></motion.div>
           <SectionHeading eyebrow="What I do" title={<>Software for the work <span className="text-muted">behind the idea.</span></>} description="From the first screen to the systems that support it, I build focused digital products across the stack." />
           <div className="mt-12 grid gap-3 md:grid-cols-2">{services.map((service, index) => <ServiceCard key={service.title} service={service} index={index} />)}</div>
         </div>

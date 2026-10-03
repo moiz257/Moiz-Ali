@@ -1,127 +1,96 @@
 "use client";
 
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
-const CustomCursor = () => {
-  const [pos, setPos] = useState({ x: -100, y: -100 });
-  const [ring, setRing] = useState({ x: -100, y: -100 });
-  const [isHovering, setIsHovering] = useState(false);
-  const [cursorText, setCursorText] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
+type CursorMode = "default" | "interactive" | "view";
 
-  // Apply cursor-none to body client-side only to avoid SSR mismatch
+export default function CustomCursor() {
+  const [enabled, setEnabled] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [pressed, setPressed] = useState(false);
+  const [mode, setMode] = useState<CursorMode>("default");
+  const [label, setLabel] = useState("");
+
+  const x = useMotionValue(-100);
+  const y = useMotionValue(-100);
+  const orbitX = useSpring(x, { stiffness: 170, damping: 24, mass: 0.55 });
+  const orbitY = useSpring(y, { stiffness: 170, damping: 24, mass: 0.55 });
+  const trailX = useSpring(x, { stiffness: 95, damping: 22, mass: 0.8 });
+  const trailY = useSpring(y, { stiffness: 95, damping: 22, mass: 0.8 });
+  const farTrailX = useSpring(x, { stiffness: 55, damping: 20, mass: 1 });
+  const farTrailY = useSpring(y, { stiffness: 55, damping: 20, mass: 1 });
+
   useEffect(() => {
-    if (window.innerWidth >= 768) {
-      document.body.style.cursor = "none";
-      setIsVisible(true);
-    }
-    return () => {
-      document.body.style.cursor = "";
-    };
+    const mediaQuery = window.matchMedia("(pointer: fine)");
+    const updateEnabled = () => setEnabled(mediaQuery.matches);
+    updateEnabled();
+    mediaQuery.addEventListener("change", updateEnabled);
+    return () => mediaQuery.removeEventListener("change", updateEnabled);
   }, []);
 
   useEffect(() => {
-    // Only show on desktop
-    if (window.innerWidth < 768) return;
+    if (!enabled) return;
+    document.documentElement.classList.add("cursor-active");
 
-    let ringX = -100;
-    let ringY = -100;
-    let rafId: number;
-    const onMove = (e: MouseEvent) => {
-      setPos({ x: e.clientX, y: e.clientY });
+    const getInteractiveElement = (target: EventTarget | null) => target instanceof Element
+      ? target.closest<HTMLElement>("a, button, input, textarea, [data-cursor-label]")
+      : null;
+
+    const handleMove = (event: PointerEvent) => {
+      x.set(event.clientX);
+      y.set(event.clientY);
+      setVisible(true);
     };
-
-    const animate = () => {
-      ringX += (pos.x - ringX) * 0.12;
-      ringY += (pos.y - ringY) * 0.12;
-      setRing({ x: ringX, y: ringY });
-      rafId = requestAnimationFrame(animate);
-    };
-
-    const checkHover = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      
-      const textCursorEl = target.closest("[data-cursor-text]") as HTMLElement;
-      if (textCursorEl) {
-        setIsHovering(true);
-        setCursorText(textCursorEl.getAttribute("data-cursor-text") || "");
+    const handleLeave = () => setVisible(false);
+    const handleDown = () => setPressed(true);
+    const handleUp = () => setPressed(false);
+    const handleOver = (event: PointerEvent) => {
+      const element = getInteractiveElement(event.target);
+      const insideProject = event.target instanceof Element && Boolean(event.target.closest(".project-showcase"));
+      if (!element && !insideProject) {
+        setMode("default");
+        setLabel("");
         return;
       }
-
-      const hoverable = target.closest("a, button, [data-cursor='pointer']");
-      if (hoverable) {
-        setIsHovering(true);
-        setCursorText("");
-        return;
-      }
-
-      setIsHovering(false);
-      setCursorText("");
+      const customLabel = element?.dataset.cursorLabel;
+      const nextMode = customLabel === "VIEW" || insideProject ? "view" : "interactive";
+      setMode(nextMode);
+      setLabel(customLabel ?? (insideProject ? "VIEW" : element?.tagName === "INPUT" || element?.tagName === "TEXTAREA" ? "TYPE" : "OPEN"));
     };
 
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mousemove", checkHover);
-    rafId = requestAnimationFrame(animate);
+    window.addEventListener("pointermove", handleMove, { passive: true });
+    window.addEventListener("pointerleave", handleLeave);
+    window.addEventListener("pointerover", handleOver, { passive: true });
+    window.addEventListener("pointerdown", handleDown, { passive: true });
+    window.addEventListener("pointerup", handleUp, { passive: true });
 
     return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mousemove", checkHover);
-      cancelAnimationFrame(rafId);
+      document.documentElement.classList.remove("cursor-active");
+      window.removeEventListener("pointermove", handleMove);
+      window.removeEventListener("pointerleave", handleLeave);
+      window.removeEventListener("pointerover", handleOver);
+      window.removeEventListener("pointerdown", handleDown);
+      window.removeEventListener("pointerup", handleUp);
     };
-  }, [pos.x, pos.y]);
+  }, [enabled, x, y]);
 
-  if (!isVisible) return null;
+  if (!enabled) return null;
 
   return (
     <>
-      {/* Dot */}
-      <div
-        className="fixed pointer-events-none z-[99999] mix-blend-difference"
-        style={{ left: pos.x - 4, top: pos.y - 4 }}
-      >
-        <motion.div
-          className="h-2 w-2 rounded-full bg-white"
-          animate={{ scale: isHovering ? 0 : 1 }}
-          transition={{ duration: 0.2 }}
-        />
-      </div>
-
-      {/* Ring / Bubble */}
-      <div
-        className={`fixed pointer-events-none z-[99998] transition-colors duration-300 flex items-center justify-center font-bold tracking-widest text-black text-[10px] ${
-          cursorText ? "bg-white" : "mix-blend-difference"
-        }`}
-        style={{
-          left: ring.x - (cursorText ? 40 : isHovering ? 24 : 18),
-          top: ring.y - (cursorText ? 40 : isHovering ? 24 : 18),
-        }}
-      >
-        <motion.div
-          className={`rounded-full border border-white flex items-center justify-center overflow-hidden`}
-          animate={{
-            width: cursorText ? 80 : isHovering ? 48 : 36,
-            height: cursorText ? 80 : isHovering ? 48 : 36,
-            opacity: cursorText ? 1 : isHovering ? 0.8 : 0.5,
-          }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        >
-            <AnimatePresence>
-              {cursorText && (
-                <motion.span
-                   initial={{ opacity: 0, scale: 0.5 }}
-                   animate={{ opacity: 1, scale: 1 }}
-                   exit={{ opacity: 0, scale: 0.5 }}
-                   className="whitespace-nowrap"
-                >
-                  {cursorText}
-                </motion.span>
-              )}
-            </AnimatePresence>
-        </motion.div>
-      </div>
+      <motion.div className={`cursor-trail cursor-trail-far ${visible ? "is-visible" : ""}`} style={{ x: farTrailX, y: farTrailY }} aria-hidden="true" />
+      <motion.div className={`cursor-trail cursor-trail-near ${visible ? "is-visible" : ""}`} style={{ x: trailX, y: trailY }} aria-hidden="true" />
+      <motion.div className={`cursor-radar ${visible ? "is-visible" : ""} cursor-${mode} ${pressed ? "is-pressed" : ""}`} style={{ x: orbitX, y: orbitY }} aria-hidden="true">
+        <span className="cursor-radar-ring cursor-radar-ring-outer" />
+        <span className="cursor-radar-ring cursor-radar-ring-inner" />
+        <span className="cursor-radar-cross cursor-radar-cross-x" />
+        <span className="cursor-radar-cross cursor-radar-cross-y" />
+        <span className="cursor-radar-satellite cursor-radar-satellite-one" />
+        <span className="cursor-radar-satellite cursor-radar-satellite-two" />
+        {label ? <motion.span className="cursor-radar-label" initial={{ opacity: 0, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.18 }}>{label}</motion.span> : null}
+        <span className="cursor-radar-core" />
+      </motion.div>
     </>
   );
-};
-
-export default CustomCursor;
+}

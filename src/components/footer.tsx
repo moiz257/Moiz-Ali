@@ -3,19 +3,17 @@
 import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { FaLinkedinIn, FaGithub, FaDribbble, FaInstagram } from "react-icons/fa6";
+import { FaLinkedinIn, FaGithub } from "react-icons/fa6";
 
 const socials = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/moiz-ali-20b280274/", icon: <FaLinkedinIn className="w-3.5 h-3.5" /> },
   { label: "GitHub", href: "https://github.com/moiz257", icon: <FaGithub className="w-3.5 h-3.5" /> },
-  { label: "Dribbble", href: "https://dribbble.com", icon: <FaDribbble className="w-3.5 h-3.5" /> },
-  { label: "Instagram", href: "https://instagram.com", icon: <FaInstagram className="w-3.5 h-3.5" /> },
 ];
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "What I Do", href: "/what-i-do" },
+  { label: "Services", href: "/what-i-do" },
   { label: "Works", href: "/works" },
   { label: "Contact", href: "/contact" },
 ];

@@ -8,36 +8,27 @@ import SmoothScroll from "@/components/smoothScroll";
 import CommandPalette from "@/components/commandPalette";
 import SoundProvider from "@/components/soundProvider";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Moiz Ali — Digital Product Engineer",
-  description:
-    "Moiz Ali is a full-stack engineer and product designer specializing in web apps, mobile apps, AI integrations, and smart automation solutions.",
-  keywords: ["Moiz Ali", "Web Developer", "React", "Next.js", "Full Stack", "Pakistan"],
+  title: "Moiz Ali — Full-Stack Developer & AI Automation Engineer",
+  description: "Moiz Ali builds full-stack applications, AI-powered products, mobile apps, and business automation from idea to production.",
+  keywords: ["Moiz Ali", "Full-Stack Developer", "AI Automation Engineer", "Next.js", "React", "Pakistan"],
   authors: [{ name: "Moiz Ali" }],
   openGraph: {
-    title: "Moiz Ali — Digital Product Engineer",
-    description: "Crafting bold digital experiences across web, mobile, and automation.",
+    title: "Moiz Ali — Full-Stack Developer & AI Automation Engineer",
+    description: "Software that solves real business problems: full-stack products, AI, mobile, and automation.",
     type: "website",
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={inter.variable}>
       <head>
         <link rel="icon" href="/favicon-32x32.png" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#080808" />
       </head>
       <body className={`${inter.className} overflow-x-hidden bg-black antialiased`}>
         <SoundProvider />

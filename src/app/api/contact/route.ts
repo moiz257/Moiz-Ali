@@ -1,6 +1,14 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+const escapeHtml = (value: unknown) =>
+  String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -30,14 +38,20 @@ export async function POST(request: Request) {
       auth: { user, pass },
     });
 
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeCompany = escapeHtml(company);
+    const safeBudget = escapeHtml(budget);
+    const safeMessage = escapeHtml(message).replace(/\n/g, "<br />");
+
     const html = `
       <h2>New Portfolio Inquiry</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      ${company ? `<p><strong>Company:</strong> ${company}</p>` : ""}
-      ${budget ? `<p><strong>Budget:</strong> ${budget}</p>` : ""}
+      <p><strong>Name:</strong> ${safeName}</p>
+      <p><strong>Email:</strong> ${safeEmail}</p>
+      ${company ? `<p><strong>Company:</strong> ${safeCompany}</p>` : ""}
+      ${budget ? `<p><strong>Budget:</strong> ${safeBudget}</p>` : ""}
       <p><strong>Message:</strong></p>
-      <p>${message}</p>
+      <p>${safeMessage}</p>
     `;
 
     await transporter.sendMail({

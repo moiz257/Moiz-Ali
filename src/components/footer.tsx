@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { FaLinkedinIn, FaGithub, FaDribbble, FaInstagram } from "react-icons/fa6";
 
 const socials = [
@@ -20,13 +21,20 @@ const navLinks = [
 ];
 
 const Footer = () => {
+  const footerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: footerRef, offset: ["start end", "end end"] });
+  const progress = useSpring(scrollYProgress, { stiffness: 85, damping: 28, mass: 0.2 });
+  const ghostY = useTransform(progress, [0, 1], [110, -30]);
+  const ghostScale = useTransform(progress, [0, 1], [0.82, 1.08]);
+
   return (
-    <footer className="relative bg-black px-4 py-16 text-white sm:px-8 lg:px-16 overflow-hidden">
+    <motion.footer ref={footerRef} className="footer-section relative bg-black px-4 py-16 text-white sm:px-8 lg:px-16 overflow-hidden">
       {/* Top divider glow */}
       <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
       {/* Blob glows */}
       <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-80 w-[600px] rounded-full bg-white/4 blur-[100px]" />
+      <motion.div className="footer-ghost" style={{ y: ghostY, scale: ghostScale }} aria-hidden="true">SHIP<br /><span>USEFUL</span></motion.div>
 
       <div className="relative z-10 mx-auto max-w-6xl">
         {/* Main CTA card */}
@@ -144,7 +152,7 @@ const Footer = () => {
           </nav>
         </motion.div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

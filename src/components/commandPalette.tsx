@@ -89,7 +89,7 @@ export const CommandPalette = () => {
                       <User className="h-4 w-4" /> About Me
                     </Command.Item>
                     <Command.Item
-                      onSelect={() => runCommand(() => router.push("/work"))}
+                      onSelect={() => runCommand(() => router.push("/works"))}
                       className="flex cursor-pointer select-none items-center gap-3 rounded-lg px-3 py-2 text-sm text-white/70 transition-colors hover:bg-white/10 hover:text-white aria-selected:bg-white/10 aria-selected:text-white mt-1"
                     >
                       <Briefcase className="h-4 w-4" /> My Work

@@ -1,5 +1,5 @@
 import Navbar from '@/components/navbar'
-import ServicesPage from '@/components/service'
+import ServicesPage from '@/components/do'
 import React from 'react'
 
 const page = () => {
